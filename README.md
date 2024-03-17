@@ -25,9 +25,9 @@
 
 ### Ссылки на страницы
 
-- [Страница входа](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/login/index.html)
-- [Страница регистрации](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/signup/index.html)
-- [Страница со списком чатов и сообщений](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/chat/index.html)
-- [Страница настройки профиля](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/profile/index.html)
-- [Ошибка 404](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/error/index.html)
-- [Ошибка 500](https://effervescent-bombolone-3b0c43.netlify.app/src/pages/error/index.html#500)
+- [Страница входа](https://voluble-muffin-436681.netlify.app/src/pages/login/)
+- [Страница регистрации](https://voluble-muffin-436681.netlify.app/src/pages/signup/)
+- [Страница со списком чатов и сообщений](https://voluble-muffin-436681.netlify.app/src/pages/chat/)
+- [Страница настройки профиля](https://voluble-muffin-436681.netlify.app/src/pages/profile/)
+- [Ошибка 404](https://voluble-muffin-436681.netlify.app/src/pages/error/)
+- [Ошибка 500](https://voluble-muffin-436681.netlify.app/src/pages/error/#500)
