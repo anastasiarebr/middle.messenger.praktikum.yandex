@@ -49,4 +49,3 @@ inputPhone?.addEventListener('input', (e) => inputUserField(e, 'phone'))
 inputPasswordRepeated?.addEventListener('input', (e) => inputUserField(e, 'password_repeated'))
 
 export default signupForm
-

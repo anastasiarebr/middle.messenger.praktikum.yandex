@@ -25,4 +25,3 @@ export const user: IUser = {
     newPassword: '',
     avatar: '',
 }
-

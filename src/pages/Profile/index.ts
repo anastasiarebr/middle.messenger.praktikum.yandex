@@ -58,4 +58,3 @@ inputOldPassword?.addEventListener('input', (e) => inputUserField(e, 'oldPasswor
 inputNewPassword?.addEventListener('input', (e) => inputUserField(e, 'newPassword'))
 
 export default profileForm
-

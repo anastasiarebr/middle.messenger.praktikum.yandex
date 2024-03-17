@@ -17,4 +17,3 @@ export const inputUserField = function (e: Event, field: keyof typeof user) {
         labelElement?.classList.add('filled')
     }
 }
-
