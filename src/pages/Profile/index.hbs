@@ -1,0 +1,21 @@
+<div class="profileWrapper">
+<form class="form">
+    {{> Input type="file" name="avatar" value=email id="avatarField" }}
+    <span>{{display_name}}</span>
+    <div class="formInputs">
+        {{> Input type="text" name="email" value=email label="Почта" id="emailField" }}
+        {{> Input type="text" name="login" value=login label="Логин" id="loginField" }}
+        {{> Input type="text" name="first_name" value=first_name label="Имя" id="firstNameField" }}
+        {{> Input type="text" name="second_name" value=second_name label="Фамилия" id="secondNameField" }}
+        {{> Input type="text" name="display_name" value=display_name label="Имя в чате" id="displayNameField" }}
+        {{> Input type="text" name="phone" value=phone label="Телефон" id="phoneField" }}
+        {{> Input type="text" name="oldPassword" value=oldPassword label="Старый пароль" id="oldPasswordField" }}
+        {{> Input type="text" name="newPassword" value=newPassword label="Новый пароль" id="newPasswordField" }}
+    </div>
+</form>
+<div class="formFooter">
+        {{> Link url='/src/pages/Profile/' text="Изменить данные" }}
+        {{> Link url='/src/pages/Profile/' text="Изменить пароль" }}
+        {{> Link url='/' text="Выйти" }}
+    </div>
+</div>

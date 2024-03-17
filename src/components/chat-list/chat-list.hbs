@@ -1,0 +1,32 @@
+<div class="chatListWrapper">
+    <div class="chatListHeader">
+        <div class="chatListHeaderProfile">
+            {{> Link url='/src/pages/Profile/' text="Профиль" }}
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 9L5 5L1 1" stroke="#999999"/>
+            </svg>
+        </div>
+        <div class="chatListHeaderSearch">
+            {{> Input type="text" name="search" value=search label="Поиск" id="search" }}
+        </div>
+    </div>
+    <ul class="chatListItems">
+        {{#each chats}}
+            <li class="chatListItem">
+                {{#if (isFilled this.img)}}
+                <img class="chatListImage" src="{{this.img}}">
+                {{else}}
+                <div class="chatListImage empty"></div>
+                {{/if}}
+                <div class="chatListItemInfo">
+                    <span>{{this.name}}</span>
+                    <span class="chatListItemInfoText">{{this.message}}</span>
+                </div>
+                <div class="chatListItemRightColumn">
+                    <span>{{this.date}}</span>
+                    <span>{{this.count_new_messages}}</span>
+                </div>
+            </li>
+        {{/each}}
+    </div>
+</div>
