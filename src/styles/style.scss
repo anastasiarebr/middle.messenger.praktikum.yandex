@@ -1,0 +1,207 @@
+:root {
+    font-family: Inter, Helvetica, sans-serif;
+    color: $text-color;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative
+}
+
+.input {
+    height: 24px;
+    color: $text-color;
+    border: none;
+    border-bottom: 1px solid $blue-color;
+    font-size: 13px;
+}
+
+.inputLabel {
+    color: $text-secondary-color;
+    font-size: 13px;
+    &:not(.filled) {
+        position: absolute;
+        top: 9px;
+    }
+    
+    &:is(.filled) {
+        font-size: 9px;
+        margin-top: -10px;
+    }
+}
+
+.formModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 340px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    box-shadow: 0px 2px 9px 3px rgba(0, 0, 1, .14);
+    padding: 50px 30px 30px 30px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form {
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.formInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.formButton {
+    height: 37px;
+    border: none;
+    border-radius: 8px;
+    background-color: $blue-color;
+    color: $white-color;
+    font-size: 13px;
+    &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+}
+
+.formFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.link {
+    text-decoration: none;
+    color: $blue-color;
+    text-align: center;
+    font-size: 11px;
+}
+
+.errorWrapper {
+    height: 180px;
+    width: 180px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+.errorTitle {
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 500;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chatList {
+    &Wrapper {
+        width: 300px;
+    }
+    &Header {
+        &Profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-end;
+            a {
+                color: $text-secondary-color
+            }
+        }
+    }
+    &Items {
+        padding: 0;
+    }
+    &Item {
+        display: flex;
+        gap: 10px;
+        padding: 12px 0;
+        border-top: 1px solid $empty-color;
+        &Info {
+            display: flex;
+            flex-direction: column;
+            &Text {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 170px;
+            }
+        }
+    }
+    &Image {
+        width: 50px;
+        height: 50px;
+        object-fit: fill;
+        border-radius: 100%;
+        &.empty {
+            background-color: $empty-color;
+        }
+    }
+}
+
+.messagesPage {
+    display: flex;
+}
+
+.messages {
+    &Wrapper {
+        width: calc(100vw - 300px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100vh - 30px);
+    
+    }
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .rightColumn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    &Footer {
+        display: flex;
+        #messageInput {
+            flex-grow: 1;
+        }
+    }
+}
+
+.profile {
+    &Wrapper {
+        width: 310px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
