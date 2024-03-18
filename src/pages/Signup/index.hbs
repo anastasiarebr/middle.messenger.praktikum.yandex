@@ -1,0 +1,18 @@
+<div class="formModal">
+{{> Title title="Регистрация" }}
+<form class="form">
+    <div class="formInputs">
+{{> Input type="text" name="email" value=email label="Почта" id="emailField" }}
+{{> Input type="text" name="login" value=login label="Логин" id="loginField" }}
+{{> Input type="text" name="first_name" value=first_name label="Имя" id="firstNameField" }}
+{{> Input type="text" name="second_name" value=second_name label="Фамилия" id="secondNameField" }}
+{{> Input type="text" name="phone" value=phone label="Телефон" id="phoneField" }}
+{{> Input type="text" name="password" value=password label="Пароль" id="passwordField" }}
+{{> Input type="text" name="password_repeated" value=password_repeated label="Пароль (ещё раз)" id="passwordRepeatedField" }}
+</div>
+<div class="formFooter">
+{{> Button value="Зарегистрироваться" }}
+{{> Link url='/' text="Войти" }}
+</div>
+</form>
+</div>

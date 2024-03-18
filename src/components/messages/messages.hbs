@@ -1,0 +1,21 @@
+<div class="messagesWrapper">
+    <div class="messagesHeader">
+        <div class="rightColumn">
+            {{#if (isFilled logo)}}
+            <img class="chatListImage" src="{{logo}}">
+            {{else}}
+            <div class="chatListImage empty"></div>
+            {{/if}}
+            <span>{{name}}</span>
+        </div>
+        <div class="messagesSetting"></div>
+    </div>
+
+    <div class="messagesItems"></div>
+    
+    <div class="messagesFooter">
+        {{> Button value="Прикрепить файл" }}
+        {{> Input type="text" name="message" value=message label="Сообщение" id="messageInput" }}
+        {{> Button value="Отправить" }}
+    </div>
+</div>
