@@ -57,7 +57,7 @@ const login = new Login({
     },
   }),
   link: new Link({
-    url: './src/pages/Signup',
+    url: '/src/pages/Signup/',
     text: 'Нет аккаунта?',
     onClick: () => {
       console.log('from onClick');

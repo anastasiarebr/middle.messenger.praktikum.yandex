@@ -1,5 +1,7 @@
 import Handlebars from 'handlebars';
 import { Block } from '../../../modules/Block';
+import template from './index.hbs?raw';
+
 export interface InputProps extends CompileOptions {
     id: string,
     name: string,
@@ -15,7 +17,7 @@ export interface InputProps extends CompileOptions {
 
 export default class Input extends Block {
   constructor(props: InputProps) {
-    super('input', {
+    super('div', {
       ...props,
       class: 'input',
       id: props.name,
@@ -34,18 +36,12 @@ export default class Input extends Block {
             props.onBlur((e.target as HTMLInputElement)?.value);
           }
         },
-        focus: () => {
-          this.setProps({
-            ...props,
-            isError: false,
-          });
-        },
       },
     });
   }
 
   render() {
     Handlebars.registerHelper('isFilled', (value) => value !== '');
-    return this.compile('', this.props);
+    return this.compile(template, this.props)
   }
 }

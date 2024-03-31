@@ -112,7 +112,7 @@ const profile = new Profile({
   inputNewPassword: new Input({
     id: 'newPasswordField',
     name: 'newPassword',
-    label: 'Старый пароль',
+    label: 'Новый пароль',
     type: 'text',
     value: user.newPassword,
     error: 'Неверный пароль',
