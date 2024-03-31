@@ -1,13 +1,13 @@
 <div class="formModal">
-{{> Title title="Вход" }}
+{{{ title }}}
 <form class="form">
     <div class="formInputs">
-        {{> Input type="text" name="login" value=login label="Логин" id="loginField" }}
-        {{> Input type="text" name="password" value=password label="Пароль" id="passwordField" }}
+        {{{ inputLogin }}}
+        {{{ inputPassword }}}
     </div>
 <div class="formFooter">
-{{> Button value="Войти" }}
-{{> Link url='./src/pages/Signup' text="Нет аккаунта?" }}
+{{{ button }}}
+{{{ link }}}
 </div>
 </form>
 </div>

@@ -1,51 +1,140 @@
-import Handlebars from 'handlebars'
-import { Input } from '../../components/input/index.ts'
-import { Title } from '../../components/title/index.ts'
-import { Button } from '../../components/button/index.ts'
-import { Link } from '../../components/link/index.ts'
+import Title from '../../components/title/Title';
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import Link from '../../components/link/Link';
 
-import SignupForm from './index.hbs?raw'
+import { user } from '../../user.ts';
+import {
+  inputUserField,
+  emailValidator,
+  loginValidator,
+  nameValidator,
+  phoneValidator,
+  passwordValidator,
+  passwordRepeatedValidator,
+} from '../../helpers';
+import Signup from './Signup.ts';
+import { render } from '../../utils/renderDOM';
 
-import { user } from '../../user.ts'
-import { inputUserField } from '../../helpers'
-import { InputUserFieldIds } from '../../consts.ts'
+const signup = new Signup({
+  withInternalID: true,
+  title: new Title({
+    text: 'Регистрация',
+  }),
+  inputEmail: new Input({
+    id: 'emailField',
+    name: 'email',
+    label: 'Почта',
+    type: 'email',
+    value: user.email,
+    error: 'Неверный email',
+    validator: emailValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'email');
+    },
+  }),
+  inputLogin: new Input({
+    id: 'loginField',
+    name: 'login',
+    label: 'Логин',
+    type: 'text',
+    value: user.login,
+    error: 'Неверный логин',
+    validator: loginValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'login');
+    },
+  }),
+  inputFirstName: new Input({
+    id: 'firstNameField',
+    name: 'first_name',
+    label: 'Имя',
+    type: 'text',
+    value: user.first_name,
+    error: 'Неверное имя',
+    validator: nameValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'first_name');
+    },
+  }),
+  inputSecondName: new Input({
+    id: 'secondNameField',
+    name: 'second_name',
+    label: 'Фамилия',
+    type: 'text',
+    value: user.second_name,
+    error: 'Неверная фамилия',
+    validator: nameValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'second_name');
+    },
+  }),
+  inputPhone: new Input({
+    id: 'phoneField',
+    name: 'phone',
+    label: 'Телефон',
+    type: 'text',
+    value: user.phone,
+    error: 'Неверный телефон',
+    validator: phoneValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'phone');
+    },
+  }),
+  inputPassword: new Input({
+    id: 'passwordField',
+    name: 'password',
+    label: 'Пароль',
+    type: 'text',
+    value: user.password,
+    error: 'Неверный пароль',
+    validator: passwordValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'password');
+    },
+  }),
+  inputPasswordRepeated: new Input({
+    id: 'passwordRepeatedField',
+    name: 'password_repeated',
+    label: 'Пароль (ещё раз)',
+    type: 'text',
+    value: user.password_repeated,
+    error: 'Пароли не совпадают',
+    validator: (value: string): boolean => passwordRepeatedValidator(value, user.password),
+    onUpdate: (value: string) => {
+      inputUserField(value, 'password_repeated');
+    },
+  }),
+  button: new Button({
+    value: 'Зарегистрироваться',
+    onClick: () => {
+      const {
+        login, password, first_name, second_name, phone, email, password_repeated,
+      } = user;
+      if (
+        emailValidator(email)
+        && loginValidator(login)
+        && nameValidator(first_name)
+        && nameValidator(second_name)
+        && phoneValidator(phone)
+        && passwordValidator(password)
+        && passwordRepeatedValidator(password_repeated, password)
+      ) {
+        console.log({
+          login, password, first_name, second_name, phone, email, password_repeated,
+        });
+      } else {
+        throw new Error('Не все поля корректно заполнены');
+      }
+    },
+  }),
+  link: new Link({
+    url: '/',
+    text: 'Войти',
+    onClick: () => {
+      console.log('from onClick');
+    },
+  }),
+});
 
-interface Signup {
-    login: string,
-    password: string,
-    email: string,
-    first_name: string,
-    second_name: string,
-    phone: string,
-    password_repeated: string,
-}
-
-Handlebars.registerPartial('Input', Input);
-Handlebars.registerPartial('Title', Title);
-Handlebars.registerPartial('Button', Button);
-Handlebars.registerPartial('Link', Link);
-
-
-const template = Handlebars.compile(SignupForm)
-
-const signupForm = (thisUser: Signup) => template(thisUser)
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = signupForm({...user}) 
-
-const inputLogin = document.querySelector<HTMLDivElement>(InputUserFieldIds.login)
-const inputPassword = document.querySelector<HTMLDivElement>(InputUserFieldIds.password)
-const inputEmail = document.querySelector<HTMLDivElement>(InputUserFieldIds.email)
-const inputFirstName = document.querySelector<HTMLDivElement>(InputUserFieldIds.first_name)
-const inputSecondName = document.querySelector<HTMLDivElement>(InputUserFieldIds.second_name)
-const inputPhone = document.querySelector<HTMLDivElement>(InputUserFieldIds.phone)
-const inputPasswordRepeated = document.querySelector<HTMLDivElement>(InputUserFieldIds.password_repeated)
-
-inputLogin?.addEventListener('input', (e) => inputUserField(e, 'login'))
-inputPassword?.addEventListener('input', (e) => inputUserField(e, 'password'))
-inputEmail?.addEventListener('input', (e) => inputUserField(e, 'email'))
-inputFirstName?.addEventListener('input', (e) => inputUserField(e, 'first_name'))
-inputSecondName?.addEventListener('input', (e) => inputUserField(e, 'second_name'))
-inputPhone?.addEventListener('input', (e) => inputUserField(e, 'phone'))
-inputPasswordRepeated?.addEventListener('input', (e) => inputUserField(e, 'password_repeated'))
-
-export default signupForm
+render('#app', signup);
