@@ -83,7 +83,7 @@ export class Block {
     this._render();
   }
 
-  componentDidMount(oldProps?: unknown[]) {}
+  componentDidMount(_oldProps?: unknown[]) {}
 
   dispatchComponentDidMount() {}
 
@@ -94,7 +94,7 @@ export class Block {
     }
   }
 
-  componentDidUpdate(oldProps: unknown, newProps: unknown) {
+  componentDidUpdate(_oldProps: unknown, _newProps: unknown) {
     return true;
   }
 
@@ -202,7 +202,7 @@ export class Block {
         }
       },
 
-      deleteProperty(target: Record<string, unknown>, prop: string) {
+      deleteProperty(_target: Record<string, unknown>, _prop: string) {
         throw new Error('нет доступа');
       },
     });

@@ -126,7 +126,7 @@ const profile = new Profile({
     text: 'Изменить данные',
     onClick: () => {
       const {
-        login, oldPassword, newPassword, first_name, second_name, phone, email, password_repeated,
+        login, oldPassword, newPassword, first_name, second_name, phone, email,
       } = user;
       if (
         emailValidator(email)

@@ -1,4 +1,3 @@
-import { compile } from 'handlebars';
 import { Block } from '../../modules/Block';
 
 import template from './link.hbs?raw';

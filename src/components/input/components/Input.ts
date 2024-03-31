@@ -1,7 +1,5 @@
 import Handlebars from 'handlebars';
 import { Block } from '../../../modules/Block';
-import template from './input.hbs?raw';
-
 export interface InputProps extends CompileOptions {
     id: string,
     name: string,
