@@ -66,7 +66,7 @@ export class Block {
   }
 
   _createResources() {
-    this._element = this._createDocumentElement(this._meta?.tagName || 'div');
+    this._element = this._createDocumentElement(this._meta?.tagName  || 'div');
     this._render();
   }
 
@@ -129,18 +129,22 @@ export class Block {
   _addEvents() {
     const { events = {} } = this.props;
 
+    const elem = this._element?.firstChild?.nodeName === 'INPUT' ? this._element?.firstChild : this._element
+
     Object.keys(events as Record<string, (...args: unknown[]) => unknown>).forEach((eventName) => {
-      (this._element as HTMLElement)
-      .addEventListener(eventName, (events as Record<string, (...args: unknown[]) => unknown>)[eventName]);
+      elem
+      ?.addEventListener(eventName, (events as Record<string, (...args: unknown[]) => unknown>)[eventName]);
     });
   }
 
   _removeEvents() {
     const { events = {} } = this.props;
 
+    const elem = this._element?.firstChild?.nodeName === 'INPUT' ? this._element?.firstChild : this._element
+
     Object.keys(events as Record<string, (...args: unknown[]) => unknown>).forEach((eventName) => {
-      (this._element as HTMLElement)
-      .removeEventListener(eventName, (events as Record<string, (...args: unknown[]) => unknown>)[eventName]);
+      elem
+      ?.removeEventListener(eventName, (events as Record<string, (...args: unknown[]) => unknown>)[eventName]);
     });
   }
 
@@ -152,8 +156,7 @@ export class Block {
     });
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-    fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
-
+fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
 
