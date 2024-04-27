@@ -31,6 +31,12 @@
     }
 }
 
+.errorText {
+    font-size: 8px;
+    margin-top: 7px;
+    color: $text-error-color;
+}
+
 .formModal {
     display: flex;
     flex-direction: column;
@@ -73,6 +79,7 @@
     background-color: $blue-color;
     color: $white-color;
     font-size: 13px;
+    width: 100%;
     &:hover {
         opacity: 0.9;
         cursor: pointer;
@@ -83,6 +90,10 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
+    align-items: center;
+    div:first-child {
+        width: 100%;
+    }
 }
 
 .link {
@@ -90,6 +101,7 @@
     color: $blue-color;
     text-align: center;
     font-size: 11px;
+    width: 100%;
 }
 
 .errorWrapper {

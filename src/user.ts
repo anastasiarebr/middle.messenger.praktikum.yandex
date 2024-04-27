@@ -13,15 +13,15 @@ interface IUser {
 }
 
 export const user: IUser = {
-    login: '',
-    password: '',
-    first_name: '',
-    second_name: '',
-    display_name: '',
-    email: '',
-    phone: '',
-    password_repeated: '',
-    oldPassword: '',
-    newPassword: '',
-    avatar: '',
-}
+  login: '',
+  password: '',
+  first_name: '',
+  second_name: '',
+  display_name: '',
+  email: '',
+  phone: '',
+  password_repeated: '',
+  oldPassword: '',
+  newPassword: '',
+  avatar: '',
+};

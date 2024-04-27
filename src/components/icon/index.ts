@@ -1,1 +1,1 @@
-export { default as Icon } from './icon.hbs?raw'
+export { default as Icon } from './icon.hbs?raw';
