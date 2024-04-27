@@ -31,3 +31,10 @@
 - [Страница настройки профиля](https://voluble-muffin-436681.netlify.app/src/pages/profile/)
 - [Ошибка 404](https://voluble-muffin-436681.netlify.app/src/pages/error/)
 - [Ошибка 500](https://voluble-muffin-436681.netlify.app/src/pages/error/#500)
+
+### Технологии, использованные в проекте:
+
+- handlebars
+- vite
+- eslint
+- stylelint

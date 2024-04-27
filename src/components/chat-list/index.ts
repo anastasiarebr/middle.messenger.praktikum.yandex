@@ -1,7 +1,5 @@
-import Handlebars from 'handlebars'
+import Handlebars from 'handlebars';
 
-Handlebars.registerHelper('isFilled', function (value) {
-    return value !== '';
-});
+Handlebars.registerHelper('isFilled', (value) => value !== '');
 
-export { default as Chats } from './chat-list.hbs?raw'
+export { default as Chats } from './chat-list.hbs?raw';

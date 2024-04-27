@@ -1,1 +1,1 @@
-window.location.replace('./src/pages/Login/')
+window.location.replace('./src/pages/Login/');

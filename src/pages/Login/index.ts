@@ -1,30 +1,68 @@
-import Handlebars from 'handlebars'
+import { render } from '../../utils/renderDOM';
+import { user } from '../../user.ts';
+import {
+  inputUserField,
+  loginValidator,
+  passwordValidator,
+} from '../../helpers';
+import Title from '../../components/title/Title';
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import Link from '../../components/link/Link';
+import Login from './Login.ts';
 
-import { user } from '../../user.ts'
-import { inputUserField } from '../../helpers'
+const login = new Login({
+  withInternalID: true,
+  title: new Title({
+    text: 'Вход',
+  }),
+  inputLogin: new Input({
+    id: 'loginField',
+    name: 'login',
+    label: 'Логин',
+    type: 'text',
+    value: user.login,
+    error: 'Неверный логин',
+    validator: loginValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'login');
+    },
+  }),
+  inputPassword: new Input({
+    id: 'passwordField',
+    name: 'password',
+    label: 'Пароль',
+    type: 'password',
+    value: user.password,
+    error: 'Неверный пароль',
+    validator: passwordValidator,
+    onUpdate: (value: string) => {
+      inputUserField(value, 'password');
+    },
+  }),
+  button: new Button({
+    value: 'Войти',
+    onClick: () => {
+      const { login, password } = user;
 
-import { Input } from '../../components/input/index.ts'
-import { Title } from '../../components/title/index.ts'
-import { Button } from '../../components/button/index.ts'
-import { Link } from '../../components/link/index.ts'
+      if (loginValidator(login) && passwordValidator(password)
+      ) {
+        console.log({
+          login,
+          password,
+        });
+      } else {
+        throw new Error('Не все поля корректно заполнены');
+      }
+    },
+  }),
+  link: new Link({
+    url: '/src/pages/Signup/',
+    text: 'Нет аккаунта?',
+    onClick: () => {
+      console.log('from onClick');
+    },
+  }),
+});
 
-import LoginForm from './index.hbs?raw'
-
-Handlebars.registerPartial('Input', Input);
-Handlebars.registerPartial('Title', Title);
-Handlebars.registerPartial('Button', Button);
-Handlebars.registerPartial('Link', Link);
-
-const template = Handlebars.compile(LoginForm)
-
-const loginForm = (login: string, password: string) => template({login, password})
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = loginForm(user.login, user.password)
-
-const inputLogin = document.querySelector<HTMLDivElement>('#login')
-const inputPassword = document.querySelector<HTMLDivElement>('#password')
-
-inputLogin?.addEventListener('input', (e) => inputUserField(e, 'login'))
-inputPassword?.addEventListener('input', (e) => inputUserField(e, 'password'))
-
-export default loginForm
+render('#app', login);
