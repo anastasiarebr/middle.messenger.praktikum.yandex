@@ -104,4 +104,3 @@ export const chat = new Chat({
   chatList,
   messages,
 })
-
