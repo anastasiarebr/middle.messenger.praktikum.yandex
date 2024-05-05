@@ -18,6 +18,10 @@ import { Button } from '../../components/button/index.ts';
 import { User, userController } from '../../controllers/user.ts';
 import { Notification, NOTIFICATION } from '../../components/notification/index.ts';
 import { authController } from '../../controllers/auth.ts';
+import Handlebars from 'handlebars';
+
+Handlebars.registerHelper('isFilled', (value) => value !== null);
+
 
 const notification = new Notification({
   isShow: false,
@@ -241,6 +245,7 @@ saveButton.hide()
 
 export const profile = new Profile({
   withInternalID: true,
+  display_avatar: '',
   display_name: currentUser?.display_name || '',
   inputAvatar: inputAvatar,
   isShowSettings: false,
@@ -270,33 +275,39 @@ export const profile = new Profile({
 
 store.on(StoreEvents.Updated, () => {
   const isDisabled = store.getState().isDisabledProfile
+  
   if(currentUser) {
+    const { avatar, display_name, email, login, first_name, second_name, phone } = currentUser
+    profile.setProps({
+      display_name: display_name,
+      display_avatar: avatar,
+    })
     inputAvatar.setPropsInput({
-      value: currentUser.avatar,
+      value: avatar,
       isDisabled
     })
     inputEmail.setPropsInput({
-      value: currentUser.email,
+      value: email,
       isDisabled
     })
     inputLogin.setPropsInput({
-      value: currentUser.login,
+      value: login,
       isDisabled,
     })
     inputFirstName.setPropsInput({
-      value: currentUser.first_name,
+      value: first_name,
       isDisabled,
     })
     inputSecondName.setPropsInput({
-      value: currentUser.second_name,
+      value: second_name,
       isDisabled,
     })
     inputDisplayName.setPropsInput({
-      value: currentUser.display_name || '',
+      value: display_name || '',
       isDisabled,
     })
     inputPhone.setPropsInput({
-      value: currentUser.phone,
+      value: phone,
       isDisabled,
     })
 

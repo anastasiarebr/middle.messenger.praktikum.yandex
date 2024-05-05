@@ -34,7 +34,7 @@ export class AuthController {
                 const userObject = JSON.parse(user)
                 store.set('currentUser', {
                     ...userObject,
-                    avatar: userObject.avatar ? `${HTTP}${userObject.avatar}` : null
+                    avatar: userObject.avatar ? `${HTTP}/resources/${userObject.avatar}` : null
                 })
             }
             return user

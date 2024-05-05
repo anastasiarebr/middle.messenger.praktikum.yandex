@@ -9,6 +9,7 @@ import { Notification } from '../../components/notification/index.ts';
 
 export interface ProfileProps extends CompileOptions {
     inputAvatar: Input,
+    display_avatar: string,
     display_name: string,
     inputLogin: Input,
     inputDisplayName: Input,

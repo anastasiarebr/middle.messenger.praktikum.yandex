@@ -1,6 +1,11 @@
 {{#if isShowSettings}}
 <div class="profileWrapper">
 <form class="form">
+    {{#if display_avatar}}
+    <img class="profileImage" src="{{display_avatar}}" alt="{{title}}">
+    {{else}}
+    <div class="profileImage empty"></div>
+    {{/if}}
     {{{ inputAvatar }}}
     <span>{{display_name}}</span>
     <div class="formInputs">
