@@ -180,7 +180,7 @@ export class Block {
       stub?.replaceWith(child.getContent() || '');
     });
 
-    Object.entries(this.lists).forEach(([key, child], index) => {
+    Object.entries(this.lists).forEach(([key, child]) => {
       const listTemplate = this._createDocumentElement('template') as HTMLTemplateElement;
 
       child.forEach((item) => {
