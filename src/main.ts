@@ -12,5 +12,4 @@ router
   .use(PATHS.signup, signup)
   .use(PATHS.chat, chat)
   .use(PATHS.error, error('500'))
-  .use(PATHS.all, error())
   .start();
