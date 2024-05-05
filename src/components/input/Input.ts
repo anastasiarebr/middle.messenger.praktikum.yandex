@@ -1,8 +1,8 @@
 import Handlebars from 'handlebars';
-import { Block } from '../../modules/Block';
+import { Block, Props } from '../../modules/Block';
 
 import template from './input.hbs?raw';
-import Input from './components/Input';
+import { Input } from './components/index';
 
 export interface InputAtomProps extends CompileOptions {
     id: string,
@@ -13,6 +13,8 @@ export interface InputAtomProps extends CompileOptions {
     value?: string,
     error?: string,
     isError?: boolean,
+    isDisabled?: boolean,
+    input?: Input,
     onUpdate?: (e: string) => void
     onBlur?: (e: string) => void
     validator?: (value: string) => boolean
@@ -56,6 +58,14 @@ export default class InputAtom extends Block {
       }),
     });
   }
+
+  setPropsInput = (nextProps: Props) => {
+    this.setProps(nextProps)
+      this.children.input.setProps({
+        ...nextProps,
+        disabled: nextProps?.isDisabled ? 'disabled' : ''
+      })
+  };
 
   render() {
     Handlebars.registerHelper('isFilled', (value) => value !== '');

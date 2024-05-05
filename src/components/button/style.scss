@@ -1,0 +1,13 @@
+.formButton {
+    height: 37px;
+    border: none;
+    border-radius: 8px;
+    background-color: $blue-color;
+    color: $white-color;
+    font-size: 13px;
+    width: 100%;
+    &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+}

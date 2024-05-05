@@ -1,7 +1,7 @@
 import Title from '../../components/title/Title';
-import Button from '../../components/button/Button';
+import { Button } from '../../components/button/index.ts';
 import Input from '../../components/input/Input';
-import Link from '../../components/link/Link';
+import { RouterLink } from '../../components/router-link';
 
 import { user } from '../../user.ts';
 import {
@@ -14,9 +14,18 @@ import {
   passwordRepeatedValidator,
 } from '../../helpers';
 import Signup from './Signup.ts';
-import { render } from '../../utils/renderDOM';
+import { PATHS } from '../../consts.ts';
+import { authController } from '../../controllers/auth.ts';
+import { router } from '../../utils/Router.ts';
+import { Notification, NOTIFICATION } from '../../components/notification/index.ts';
 
-const signup = new Signup({
+const notification = new Notification({
+  isShow: false,
+  text: '',
+  type: NOTIFICATION.success
+})
+
+export const signup = new Signup({
   withInternalID: true,
   title: new Title({
     text: 'Регистрация',
@@ -107,7 +116,7 @@ const signup = new Signup({
   }),
   button: new Button({
     value: 'Зарегистрироваться',
-    onClick: () => {
+    onClick: async () => {
       const {
         login, password, first_name, second_name, phone, email, password_repeated,
       } = user;
@@ -120,21 +129,38 @@ const signup = new Signup({
         && passwordValidator(password)
         && passwordRepeatedValidator(password_repeated, password)
       ) {
-        console.log({
-          login, password, first_name, second_name, phone, email, password_repeated,
-        });
+        const data = { login, password, first_name, second_name, phone, email }
+
+        try {
+          const resp = await authController.createUser(data)
+
+          const id = resp.response
+
+          if(id) {
+            router.go('/messenger')
+          } else {
+            const error = JSON.parse(resp.response);
+            const errorText = error.reason || 'Произошла ошибка'
+            notification.setProps({text: errorText})
+
+            notification.showNotification()
+          } 
+        } catch (e) {
+          notification.setProps({text: 'Произошла ошибка'})
+
+          notification.showNotification()
+        }
+
+       
       } else {
-        throw new Error('Не все поля корректно заполнены');
+        notification.setProps({text: 'Не все поля корректно заполнены'})
+        notification.showNotification()
       }
     },
   }),
-  link: new Link({
-    url: '/',
+  link: new RouterLink({
+    pathname: PATHS.login,
     text: 'Войти',
-    onClick: () => {
-      console.log('from onClick');
-    },
   }),
+  notification,
 });
-
-render('#app', signup);

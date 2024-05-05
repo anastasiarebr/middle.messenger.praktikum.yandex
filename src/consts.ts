@@ -16,3 +16,12 @@ export enum InputUserFieldIds {
     oldPassword = '#oldPasswordField',
     newPassword = '#newPasswordField',
 }
+
+export enum PATHS {
+    login = '/',
+    profile = '/settings',
+    signup = '/sign-up',
+    chat = '/messenger',
+    error = '/500',
+    all = '*',
+}

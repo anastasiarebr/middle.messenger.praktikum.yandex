@@ -1,0 +1,18 @@
+
+<div class="chatListItem" data-id="{{id}}">
+    {{#if avatar}}
+    <img class="chatListImage" src="{{avatar}}" alt="{{title}}">
+    {{else}}
+    <div class="chatListImage empty"></div>
+    {{/if}}
+    <div class="chatListItemInfo">
+        <span>{{title}}</span>
+        <span class="chatListItemInfoText">{{last_message}}</span>
+    </div>
+    <div class="chatListItemRightColumn">
+        <span>{{date}}</span>
+        {{#if (hasNew unread_count)}}
+        <span>{{unread_count}}</span>
+        {{/if}}
+    </div>
+</div>

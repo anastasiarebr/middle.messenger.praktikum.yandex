@@ -1,0 +1,30 @@
+@import '../src/styles/constants.scss';
+
+.messagesItems {
+    width: 100%;
+    height: calc(100vh - 170px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.right, .left {
+    display: block;
+    padding: 10px;
+    background-color: $message-background;
+    max-width: 200px;
+    border-radius: 12px;
+    flex-grow: 1;
+}
+
+.right {
+    background-color: $message-background-current-user;
+}
+
+.messageBlock {
+    display: flex;
+}
+
+.messageBlock:has(.right) {
+    justify-content: flex-end;
+}

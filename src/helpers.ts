@@ -68,3 +68,15 @@ export const passwordRepeatedValidator = function (value: string, oldValue: stri
 export const emptyValidator = function (value: string): boolean {
   return value !== '';
 };
+
+export const trim = function (value: string, chars?: string): string {
+  if(!chars) {
+    return value.trim()
+  }
+
+  const reg = new RegExp(`[${chars}]`, "gi");
+
+  const res = value.replace(reg, '')
+
+  return res
+}

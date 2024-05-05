@@ -5,7 +5,7 @@ enum METHODS {
     DELETE = 'DELETE',
 }
 
-interface Options {
+export interface Options {
     headers?: Record<string, string>,
     method?: METHODS,
     data?: object,
@@ -29,7 +29,7 @@ function queryStringify(data: Record<string, unknown[] | object>) {
   return `?${params}`;
 }
 
-class HTTPTransport {
+export class HTTPTransport {
   get = (url: string, options: Options = {}) => this.request(url, { 
         ...options, method: METHODS.GET 
     }, options.timeout);
@@ -46,7 +46,7 @@ class HTTPTransport {
         ...options, method: METHODS.DELETE }, 
     options.timeout);
 
-  request = (url: string, options: Options = {}, timeout = 5000) => {
+  request = (url: string, options: Options = {}, timeout = 5000, withCredentials = true) => {
     const { headers = {}, method, data } = options;
 
     return new Promise((resolve, reject) => {
@@ -77,12 +77,14 @@ class HTTPTransport {
       xhr.onerror = reject;
 
       xhr.timeout = timeout;
+      xhr.withCredentials = withCredentials;
       xhr.ontimeout = reject;
 
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data as Document | XMLHttpRequestBodyInit | null | undefined);
+        const reqData = data instanceof FormData ? data : JSON.stringify(data)
+        xhr.send(reqData as string | FormData);
       }
     });
   };

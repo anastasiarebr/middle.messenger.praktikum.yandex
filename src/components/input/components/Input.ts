@@ -11,6 +11,7 @@ export interface InputProps extends CompileOptions {
     placeholder?: string,
     value?: string,
     isError?: boolean,
+    isDisabled?: boolean,
     onUpdate?: (e: string) => void
     onBlur?: (e: string) => void
 }
@@ -25,6 +26,7 @@ export default class Input extends Block {
       name: props.name,
       placeholder: props.placeholder,
       value: props.value,
+      disabled: props.isDisabled ? 'disabled' : '',
       events: {
         input: (e: Event) => {
           if (props.onUpdate) {

@@ -1,21 +1,29 @@
 <div class="messagesWrapper">
-    <div class="messagesHeader">
+    {{#if isEmpty}}
+        <div class="empty">Выберите чат чтобы отправить сообщение</div>
+        {{else}}
+        <div class="messagesHeader">
         <div class="rightColumn">
             {{#if (isFilled logo)}}
-            <img class="chatListImage" src="{{logo}}">
+            <img class="chatListImageMessage" src="{{logo}}">
             {{else}}
-            <div class="chatListImage empty"></div>
+            <div class="chatListImageMessage empty"></div>
             {{/if}}
-            <span>{{name}}</span>
+            <span>{{title}}</span>
         </div>
-        <div class="messagesSetting"></div>
+        <div class="leftColumn">
+            {{{ chatSettings }}}
+        </div>
     </div>
 
-    <div class="messagesItems"></div>
+    <div class="messagesItemsWrapper">
+        {{{ messages }}}
+    </div>
     
     <div class="messagesFooter">
-        {{{ fileButton }}}
         {{{ messageInput }}}
         {{{ sendButton }}}
     </div>
+    {{/if}}
+    
 </div>

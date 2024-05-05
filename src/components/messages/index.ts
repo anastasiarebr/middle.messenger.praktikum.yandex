@@ -1,1 +1,3 @@
-export { default as Messages } from './messages.hbs?raw';
+import './style.scss'
+
+export { default as Messages } from './Messages';
