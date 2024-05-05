@@ -31,7 +31,7 @@ const requests = async () => {
   }
 }
 
-await requests()
+requests()
 
 const chatList = new ChatList({
   profileLink: new RouterLink({
@@ -104,4 +104,3 @@ export const chat = new Chat({
   chatList,
   messages,
 })
-
