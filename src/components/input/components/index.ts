@@ -1,1 +1,3 @@
-export { default as Input } from './index.hbs?raw';
+import './style.scss'
+
+export { type InputProps, default as Input } from './Input';

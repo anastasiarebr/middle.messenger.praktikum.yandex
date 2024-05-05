@@ -9,24 +9,10 @@
         <div class="chatListHeaderSearch">
             {{{ searchInput }}}
         </div>
+        {{{ addButtton }}}
+        {{{ dialog }}}
     </div>
-    <ul class="chatListItems">
-        {{#each chats}}
-            <li class="chatListItem">
-                {{#if (isFilled this.img)}}
-                <img class="chatListImage" src="{{this.img}}" alt="{{this.name}}">
-                {{else}}
-                <div class="chatListImage empty"></div>
-                {{/if}}
-                <div class="chatListItemInfo">
-                    <span>{{this.name}}</span>
-                    <span class="chatListItemInfoText">{{this.message}}</span>
-                </div>
-                <div class="chatListItemRightColumn">
-                    <span>{{this.date}}</span>
-                    <span>{{this.count_new_messages}}</span>
-                </div>
-            </li>
-        {{/each}}
+    <div class="chatListItems">
+        {{{ chatsItems }}}
     </div>
 </div>

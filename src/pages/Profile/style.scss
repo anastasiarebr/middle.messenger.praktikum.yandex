@@ -1,0 +1,42 @@
+@import '../src/styles/constants.scss';
+
+.profile {
+    &Wrapper {
+        width: 310px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.backButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $blue-color;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+
+    &Wrapper {
+        background-color: $message-background;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 65px;
+    }
+
+    div {
+        margin-top: 4px;
+        span {
+            color: white
+        }
+    }
+
+}

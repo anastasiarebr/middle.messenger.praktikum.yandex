@@ -10,7 +10,7 @@ export interface ChatProps extends CompileOptions {
     messages: Messages
 }
 
-export default class Login extends Block {
+export default class Chat extends Block {
   constructor(props: ChatProps) {
     super('div', {
       ...props,

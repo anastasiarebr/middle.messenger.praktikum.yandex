@@ -2,8 +2,10 @@ import { Block } from '../../modules/Block';
 
 import template from './index.hbs?raw';
 
-import Input from '../../components/input/Input';
-import Link from '../../components/link/Link';
+import { Input } from '../../components/input/index.ts';
+import { RouterLink } from '../../components/router-link/index.ts';
+import { Button } from '../../components/button/index';
+import { Notification } from '../../components/notification/index.ts';
 
 export interface ProfileProps extends CompileOptions {
     inputAvatar: Input,
@@ -16,10 +18,14 @@ export interface ProfileProps extends CompileOptions {
     inputSecondName: Input,
     inputPhone: Input,
     inputNewPassword: Input,
-    linkData: Link,
-    linkPassword: Link,
-    linkExit: Link,
+    editButton?: Button
+    saveButton?: Button
+    linkExit: RouterLink,
     withInternalID?: boolean,
+    isShowSettings: boolean,
+    notification?: Notification,
+    backLink: RouterLink
+    
 }
 
 export default class Profile extends Block {

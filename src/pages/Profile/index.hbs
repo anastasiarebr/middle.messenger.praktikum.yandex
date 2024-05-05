@@ -1,3 +1,4 @@
+{{#if isShowSettings}}
 <div class="profileWrapper">
 <form class="form">
     {{{ inputAvatar }}}
@@ -14,8 +15,18 @@
     </div>
 </form>
 <div class="formFooter">
-        {{{ linkData }}}
-        {{{ linkPassword }}}
+        {{{ editButton }}}
+        {{{ saveButton }}}
         {{{ linkExit }}}
+        
     </div>
 </div>
+
+<div class="backButtonWrapper">
+    <div class="backButton">{{{ backLink }}}</div>
+    
+</div>
+
+{{{ notification }}}
+
+{{/if}}

@@ -1,0 +1,28 @@
+.chatList {
+    &Item {
+        display: flex;
+        gap: 10px;
+        padding: 12px 0;
+        border-top: 1px solid $empty-color;
+        &Info {
+            display: flex;
+            flex-direction: column;
+            &Text {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 170px;
+            }
+        }
+        cursor: pointer;
+    }
+    &Image {
+        width: 50px;
+        height: 50px;
+        object-fit: fill;
+        border-radius: 100%;
+        &.empty {
+            background-color: $empty-color;
+        }
+    }
+}
