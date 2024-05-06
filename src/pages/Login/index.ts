@@ -64,13 +64,19 @@ export const login = new Login({
           const resp = await authController.signinUser(data)
 
           const isSuccess = resp.response === 'OK'
-
+          
           if(isSuccess) {
             chatController.getChats()
             router.go(PATHS.chat)
           } else {
             const error = JSON.parse(resp.response);
+
             const errorText = error.reason || 'Произошла ошибка'
+            const userInSystem = errorText === 'User already in system'
+
+            if(userInSystem) {
+              router.go(PATHS.chat)
+            }
             notification.setProps({text: errorText})
 
             notification.showNotification()
