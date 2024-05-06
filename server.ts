@@ -17,19 +17,19 @@ const vite = await createViteServer({
 app.use(vite.middlewares);
 app.use(express.static(`${__dirname}/dist`));
 
-app.get('/sign-in', (req, res) => {
+app.get('/sign-in', (_, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 })
 
-app.get('/sign-up', (req, res) => {
+app.get('/sign-up', (_, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 })
 
-app.get('/messenger', (req, res) => {
+app.get('/messenger', (_, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 })
 
-app.get('/settings', (req, res) => {
+app.get('/settings', (_, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 })
 
