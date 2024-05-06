@@ -8,11 +8,14 @@ import { Button } from '../button';
 import { Dialog } from '../dialog';
 import { Title } from '../title';
 import { chatController, IChats } from '../../controllers/chat';
+import store, { StoreEvents } from '../../utils/Store';
+import { User } from '../../controllers/types';
+
 export interface ChatListProps extends CompileOptions {
     profileLink: RouterLink,
     searchInput: Input,
     chats: Array<IChats>,
-    currentUser: Record<string, string>
+    currentUser: User
 }
 
 let newChatTitle = ''
@@ -79,6 +82,31 @@ export default class ChatList extends Block {
       }),
       dialog,
     });
+
+    store.on(StoreEvents.Updated, () => {
+      const chats = store.getState().chats as IChats[]
+      const currentUser = store.getState().currentUser as User
+
+      this.setProps({
+        chatsItems: chats?.length > 0 ? chats?.map((chat: IChats) => {
+          return new ChatListItem({
+            ...chat,
+            userId: currentUser?.id,
+          })
+        }) : [],
+        currentUser
+      })
+
+      this.lists = {
+       ...this.lists,
+       chatsItems: chats?.length > 0 ? chats?.map((chat: IChats) => {
+          return new ChatListItem({
+            ...chat,
+            userId: currentUser?.id,
+          })
+        }) : [],
+      }
+    })
   }
 
   render() {

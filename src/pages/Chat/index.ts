@@ -11,6 +11,7 @@ import './style.scss'
 import { chatController, IChats } from '../../controllers/chat';
 import { authController } from '../../controllers/auth.ts';
 import { router } from '../../utils/Router.ts';
+import store, { StoreEvents } from '../../utils/Store.ts';
 
 const search = '';
 let message = '';
@@ -26,6 +27,7 @@ const requests = async () => {
       return
     }
     chats = await chatController.getChats()
+    store.set('chats', chats)
   } catch (error) {
     console.error(error)
   }
@@ -99,6 +101,12 @@ const messages = new Messages({
   }),
 });
 
+store.on(StoreEvents.Updated, () => {
+  chatList.setProps({
+    chats: store.getState().chats as IChats[]
+  })
+  chats = store.getState().chats as IChats[]
+})
 
 export const chat = new Chat({
   chatList,
