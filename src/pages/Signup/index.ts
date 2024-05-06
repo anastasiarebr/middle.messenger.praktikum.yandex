@@ -141,6 +141,12 @@ export const signup = new Signup({
           } else {
             const error = JSON.parse(resp.response);
             const errorText = error.reason || 'Произошла ошибка'
+            const userInSystem = errorText === 'User already in system'
+
+            if(userInSystem) {
+              router.go(PATHS.chat)
+            }
+            
             notification.setProps({text: errorText})
 
             notification.showNotification()
