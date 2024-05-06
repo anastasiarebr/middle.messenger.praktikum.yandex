@@ -15,12 +15,7 @@ const vite = await createViteServer({
 });
 
 app.use(vite.middlewares);
-// app.use(express.static(`${__dirname}/dist`));
 app.use(express.static('./'));
-
-app.get('/sign-in', (_, res) => {
-  res.sendFile(`${__dirname}/dist/index.html`);
-})
 
 app.get('/sign-up', (_, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
