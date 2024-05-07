@@ -1,7 +1,8 @@
 import { Block } from '../../modules/Block';
 import template from './index.hbs?raw';
 
-import { MessagesSettingsItem } from './item/index'
+import { MessagesSettingsItem, TYPES } from './item/index'
+import { chatController } from '../../controllers/chat';
 
 export interface MessagesSettingsProps extends CompileOptions {
     isShowItems?: boolean,
@@ -11,9 +12,23 @@ export interface MessagesSettingsProps extends CompileOptions {
 const settings = [
   {
     title: 'Добавить пользователя',
+    type: TYPES.add,
+    action: ({users, chatId}: {users: number[], chatId: number}) => {
+      chatController.addUsersToChat({
+        users,
+        chatId
+    })
+  }
   },
   {
     title: 'Удалить пользователя',
+    type: TYPES.delete,
+    action: ({users, chatId}: {users: number[], chatId: number}) => {
+      chatController.deleteUserFromChat({
+        users,
+        chatId
+    })
+  }
   },
 ]
 

@@ -1,3 +1,3 @@
 import './style.scss'
 
-export { default as MessagesSettingsItem } from './MessageSettingsItem';
+export { default as MessagesSettingsItem, TYPES } from './MessageSettingsItem';
