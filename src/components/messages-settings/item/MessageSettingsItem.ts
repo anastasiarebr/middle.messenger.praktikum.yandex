@@ -6,12 +6,23 @@ import { Title } from '../../title';
 import store from '../../../utils/Store';
 import { Input } from '../../../components/input/index';
 import { Button } from '../../button';
-import { chatController } from '../../../controllers/chat';
 
+export enum TYPES {
+  add = 'add',
+  delete = 'delete',
+}
+
+export const buttonText = {
+  [TYPES.add]: 'Добавить',
+  [TYPES.delete]: 'Удалить',
+}
 export interface MessagesSettingsItemProps extends CompileOptions {
     title: string,
+    type: TYPES,
     icon?: string,
     isShowPopup?: boolean
+    action: ({users, chatId}: {users: number[], chatId: number}) => void
+    button?: Button,
 }
 
 let userId = ''
@@ -46,20 +57,6 @@ const dialog = new Dialog({
       }
     }
   }),
-  button: new Button({
-    value: 'Добавить',
-    onClick: async () => {
-      if(userId !== '') { 
-
-        const chatId = (store.getState().currentChatId as string) || ''
-
-        await chatController.addUsersToChat({
-          users: [Number(userId)],
-          chatId: Number(chatId)
-        })
-      }
-    }
-  }),
 })
 
 export default class MessagesSettingsItem extends Block {
@@ -86,6 +83,29 @@ export default class MessagesSettingsItem extends Block {
               text: props.title
             })
             isShowPopup = true
+
+            dialog.children = {
+              ...dialog.children,
+              button: new Button({
+                value: buttonText[props.type],
+                onClick: async () => {
+                  if(userId !== '') { 
+              
+                    const chatId = (store.getState().currentChatId as string) || ''
+              
+                    if(!props.action) {
+                      return
+                    }
+                
+                    (await props.action({
+                      users: [Number(userId)],
+                      chatId: Number(chatId)
+                    }))
+                  }
+                }
+              })
+            }
+
             dialog.setProps({
               isShow: true,
             })

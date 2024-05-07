@@ -66,4 +66,16 @@ export class ChatAPI extends BaseAPI {
             }
         }).then(resp => resp);
     }
+
+    async deleteUsersFromChat(data: {
+        users: number[],
+        chatId: number
+    }) {
+        return chatAPIInstance.delete(`${HTTP}/chats/users`, {
+            data,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(resp => resp);
+    }
 }

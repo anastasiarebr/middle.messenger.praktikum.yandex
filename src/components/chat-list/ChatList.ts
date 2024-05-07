@@ -53,8 +53,14 @@ const dialog = new Dialog({
         await chatController.createChat({
           title: newChatTitle
         })
+
+        const res = await chatController.getChats()
+        store.set('chats', res)
+
+        dialog.setProps({
+          isShow: false
+        })
       }
-      
     }
   }),
   onClose: () => {

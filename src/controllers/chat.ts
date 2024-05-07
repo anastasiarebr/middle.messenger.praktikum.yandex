@@ -105,6 +105,17 @@ export class ChatController {
             throw new Error('error')
         }
     }
+
+    public async deleteUserFromChat(data: {
+        users: number[],
+        chatId: number,
+    }): Promise<void> {
+        try {
+            await chat.deleteUsersFromChat(data) as XMLHttpRequest
+        } catch (e) {
+            throw new Error('error')
+        }
+    }
 } 
 
 export const chatController = new ChatController()
