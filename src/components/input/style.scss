@@ -1,0 +1,25 @@
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.inputLabel {
+    color: $text-secondary-color;
+    font-size: 13px;
+    &:not(.filled) {
+        position: absolute;
+        top: 9px;
+    }
+    
+    &:is(.filled) {
+        font-size: 9px;
+        margin-top: -10px;
+    }
+}
+
+.errorText {
+    font-size: 8px;
+    margin-top: 7px;
+    color: $text-error-color;
+}

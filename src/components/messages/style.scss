@@ -1,0 +1,56 @@
+.messages {
+    &Wrapper {
+        width: calc(100vw - 300px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100vh - 30px);
+
+        & > .empty {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(50%);
+        }
+    
+    }
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+        margin: 0 30px;
+        border-bottom: 1px solid #EAEAEA;
+
+        .rightColumn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    &Footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        div:nth-child(1) {
+            flex-grow: 1;
+        }
+    }
+}
+
+.chatListImageMessage {
+    width: 50px;
+    height: 50px;
+    object-fit: fill;
+    border-radius: 100%;
+    &.empty {
+        background-color: $empty-color;
+    }
+}
+
+.messagesItemsWrapper {
+    padding: 10px;
+    overflow: scroll;
+}

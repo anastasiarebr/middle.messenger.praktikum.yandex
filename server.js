@@ -1,5 +1,6 @@
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
+import path from 'path';
 
 const app = express();
 
@@ -11,7 +12,11 @@ const vite = await createViteServer({
 });
 
 app.use(vite.middlewares);
-app.use(express.static('./'));
+app.use(express.static('dist'));
+
+app.get('*', (_0, res) => {
+  res.sendFile(path.join('dist', 'index.html'),{ root: '.' });
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);

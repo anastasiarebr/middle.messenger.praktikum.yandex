@@ -1,0 +1,9 @@
+@import '../src/styles/constants.scss';
+
+.popupItem {
+    cursor: pointer;
+    color: $text-secondary-color;
+    &:hover {
+        color: $text-color
+    }
+}

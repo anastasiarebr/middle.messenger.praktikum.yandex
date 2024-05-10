@@ -6,6 +6,10 @@ export interface Props {
   [key: string]: unknown,
 }
 
+export interface Lists {
+  [key: string]: unknown[],
+}
+
 export interface Children {
   [key: string]: Block,
 }
@@ -29,12 +33,14 @@ export class Block {
 
   children: Children;
 
+  lists: Lists;
+
   props: Props = {};
 
   eventBus: () => EventBus;
 
   constructor(tagName: string = 'div', propsAndChildren: Props = {}) {
-    const { children, props = {
+    const { children, lists, props = {
       withInternalID: true
     } } = this._getChildren(propsAndChildren);
 
@@ -45,6 +51,7 @@ export class Block {
     };
 
     this.children = children;
+    this.lists = lists;
 
     if (props.withInternalID) {
       this._id = makeUUID();
@@ -100,17 +107,21 @@ export class Block {
 
   _getChildren(propsAndChildren: Props) {
     const children: Children = {};
+    const lists: Lists = {}
     const props: Props = {};
+
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
+      } else if (Array.isArray(value)) {
+        lists[key] = value
       } else {
         props[key] = value;
       }
     });
 
-    return { children, props };
+    return { children, props, lists };
   }
 
   setProps = (nextProps: Props) => {
@@ -151,16 +162,42 @@ export class Block {
   compile(template: string, props: Props) {
     const propsAndStubs = { ...props };
 
+    const thisId = Math.floor(Math.random() * 1000);
+
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
+    Object.entries(this.lists).forEach(([key]) => {
+      propsAndStubs[key] = `<div data-id="${key}_${thisId}"></div>`;
+    });
+
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
+    fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
 
       stub?.replaceWith(child.getContent() || '');
+    });
+
+    Object.entries(this.lists).forEach(([key, child]) => {
+      const listTemplate = this._createDocumentElement('template') as HTMLTemplateElement;
+
+      child.forEach((item) => {
+        if (item instanceof Block) {
+          const content = item.getContent();
+          if (content) {
+            listTemplate.content.append(content);
+          }
+        } else {
+          listTemplate.content.append(`${item}`);
+        }
+      });
+
+      const stub = fragment.content.querySelector(`[data-id="${key}_${thisId}"]`);
+      if (stub) {
+        stub.replaceWith(listTemplate.content);
+      }
     });
 
     return fragment.content;
@@ -181,7 +218,7 @@ fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
     return document.createElement('template').content;
   }
 
-  getContent() {
+  getContent(): HTMLElement | null {
     return this.element;
   }
 
@@ -225,5 +262,9 @@ fragment.innerHTML = compile(template, propsAndStubs)({ ...propsAndStubs });
 
   hide() {
     (this._element as HTMLElement).style.display = 'none';
+  }
+
+  remove() {
+    (this._element as HTMLElement).remove()
   }
 }

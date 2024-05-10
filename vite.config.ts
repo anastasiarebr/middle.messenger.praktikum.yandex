@@ -6,13 +6,9 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
       input: {
-        login: resolve(__dirname, 'src/pages/Login/index.html'),
-        signup: resolve(__dirname, 'src/pages/Signup/index.html'),
-        chat: resolve(__dirname, 'src/pages/Chat/index.html'),
-        error: resolve(__dirname, 'src/pages/Error/index.html'),
-        profile: resolve(__dirname, 'src/pages/Profile/index.html'),
+          html: 'index.html',
       },
-    },
+  },
   },
   css: {
     preprocessorOptions: {
@@ -20,5 +16,8 @@ export default defineConfig({
         additionalData: '@import "./src/styles/constants.scss";',
       },
     },
+  },
+  server: {
+    port: 3000,
   },
 });

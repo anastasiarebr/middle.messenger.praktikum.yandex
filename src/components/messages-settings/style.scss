@@ -1,0 +1,37 @@
+.messagesSetting {
+    display: block;
+    transform: rotate(90deg);
+    cursor: pointer;
+    &::after {
+        content: '. . .';
+        font-size: 20px;
+        font-weight: 900;
+    }
+}
+
+.messagesSettingOpen {
+    display: block;
+    cursor: pointer;
+    &:after {
+        content: 'X';
+        display: inline-block;
+        font-size: 30px;
+        font-weight: 100;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+}
+
+.popupWrapper {
+    background-color: white;
+    border-radius: 12px;
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    box-shadow: 0px 2px 9px 3px rgba(0, 0, 1, .14);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

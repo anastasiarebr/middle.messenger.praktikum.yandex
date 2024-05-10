@@ -1,11 +1,6 @@
-import Handlebars from 'handlebars';
-import { Link } from '../../components/link/index.ts';
-
-import Error from './index.hbs?raw';
-
-Handlebars.registerPartial('Link', Link);
-
-const windowHash = window.location.hash;
+import Error from './Error.ts'
+import { RouterLink } from '../../components/router-link/index.ts';
+import { PATHS } from '../../consts.ts';
 
 const errorsArr = [
   {
@@ -20,13 +15,14 @@ const errorsArr = [
   },
 ];
 
-const errors = new Map(errorsArr.map((item) => [item.hash, item]));
+const errors = new Map(errorsArr.map((item) => [item.code, item]));
+const currentError = (code: string) => [...errors.keys()].includes(code)
+  ? errors.get(code) : errors.get('#404')
 
-const template = Handlebars.compile(Error);
-
-const error = () => template([...errors.keys()].includes(windowHash)
-  ? errors.get(windowHash) : errors.get('#404'));
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = error();
-
-export default error;
+export const error = (code: string = '404') => new Error({
+  ...currentError(code),
+  link: new RouterLink({
+    pathname: PATHS.chat,
+    text: 'Назад к чатам',
+  }),
+})
