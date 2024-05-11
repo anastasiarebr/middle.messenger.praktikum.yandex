@@ -1,4 +1,4 @@
-import { Route } from './Route'
+import { Route } from './Route.ts'
 import { Block } from '../modules/Block';
 
 export interface IRouter {
@@ -10,7 +10,7 @@ export interface IRouter {
 }
 
 export class Router {
-    private routes: IRouter['routes'] = []
+    routes: IRouter['routes'] = []
     private history: IRouter['history'] = null
     private _currentRoute: IRouter['currentRoute'] = null
     private _rootQuery: IRouter['rootQuery'] = ''
