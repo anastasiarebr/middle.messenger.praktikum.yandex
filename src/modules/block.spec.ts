@@ -50,8 +50,8 @@ describe("Block", () => {
     it("should remove", () => {
         block.remove()
 
-        const testComponnet = mainComponent?.querySelector('di')
+        const testComponnet = mainComponent?.querySelector('div')
                 
-        expect(testComponnet?.innerHTML).to.equal(true)
+        expect(testComponnet?.innerHTML).to.equal(false)
     });
 }); 
