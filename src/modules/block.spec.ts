@@ -52,6 +52,6 @@ describe("Block", () => {
 
         const testComponnet = mainComponent?.querySelector('div')
                 
-        expect(testComponnet?.innerHTML).to.equal(undefined)
+        expect(testComponnet?.innerHTML).to.equal(true)
     });
 }); 
