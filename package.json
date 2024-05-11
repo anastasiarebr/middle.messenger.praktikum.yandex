@@ -14,12 +14,12 @@
     "lint": "eslint . --ext .ts",
     "stylelint": "stylelint \"**/*.css\"",
     "test": "mocha --require mochaSetup.js",
-    "prepare": "husky",
+    "prepare": "husky install",
     "pre-commit": "npm run lint && npm run test"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "nnpm run pre-commit"
+      "pre-commit": "npm run pre-commit"
     }
   },
   "devDependencies": {
