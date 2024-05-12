@@ -1,7 +1,8 @@
-import { compile } from 'handlebars';
+import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 import { EventBus } from './EventBus.ts';
 
+const { compile } = Handlebars
 export interface Props {
   [key: string]: unknown,
 }

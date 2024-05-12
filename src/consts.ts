@@ -23,5 +23,6 @@ export enum PATHS {
     signup = '/sign-up',
     chat = '/messenger',
     error = '/500',
+    not_found = '/404',
     all = '*',
 }
