@@ -29,7 +29,7 @@
 - [Страница регистрации](https://voluble-muffin-436681.netlify.app/sign-up/)
 - [Страница со списком чатов и сообщений](https://voluble-muffin-436681.netlify.app/messenger)
 - [Страница настройки профиля](https://voluble-muffin-436681.netlify.app/settings/)
-- [Ошибка 404](https://voluble-muffin-436681.netlify.app/123)
+- [Ошибка 404](https://voluble-muffin-436681.netlify.app/404)
 - [Ошибка 500](https://voluble-muffin-436681.netlify.app/500)
 
 ### Технологии, использованные в проекте:
@@ -38,6 +38,8 @@
 - vite
 - eslint
 - stylelint
+- mocha
+- chai
 
 ### Также в проекте реализована поддержка:
 
