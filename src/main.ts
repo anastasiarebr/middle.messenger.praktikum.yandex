@@ -11,5 +11,6 @@ router
   .use(PATHS.profile, profile)
   .use(PATHS.signup, signup)
   .use(PATHS.chat, chat)
+  .use(PATHS.not_found, error('404'))
   .use(PATHS.error, error('500'))
   .start();
